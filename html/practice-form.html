@@ -1,9 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Practice Form</title>
+  <title>Favorite Tea</title>
 </head>
 <body>
-  <
+  <h1>Tea Snobs of the World Unite!</h1>
+  <form name="tea" action="success.html" method="post">
+    <fieldset>
+    <div>
+       Do you like tea?<br>
+       <input type="checkbox" name="likes-tea" value="yes" required>
+        Yes!
+    </div>
+    <div>
+      <label>Full Name</label>
+      <input type="text" name="fullname" placeholder="Your name">
+    </div>
+    <div>
+      <label>Date of Current Favorite</label>
+      <input type="date" name="date">
+    </div>
+    </fieldset>
+    <fieldset>
+    <div>
+      <label>Favorite Tea</label>
+      <select name="tea_type">
+        <option value="favorite">&nbsp;</option>
+        <option value="favorite">Oolong</option>
+        <option value="favorite">Green</option>
+        <option value="favorite">Pu-erh</option>
+        <option value="favorite">White</option>
+        <option value="favorite">Black</option>
+        <option value="favorite">Matte</option>
+        <option value="favorite">Chai</option>
+      </select>
+    </div><br>
+    <div>
+      <label>Tell us why:</label>
+      <br><textarea name="why" placeholder="Your reasons for liking this tea..." rows=10 cols=50></textarea>
+    </div>
+    </fieldset>
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>
