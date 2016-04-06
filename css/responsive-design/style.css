@@ -13,7 +13,6 @@ cite {
                   width: 18%;
                   display: inline-block;
                   vertical-align: top;
-                  min-width: 69px;
                   padding-right: 5px;
 
 }
@@ -41,15 +40,61 @@ figcaption {
 }
 
 body {
+      margin: auto;
       max-width: 960px;
-      min-width: 384px;
+      min-width: 300px;
 }
 
 main {
       max-width: 77%;
       display: inline-block;
       vertical-align: top;
-      min-width: 315px;
       padding-left: 5px;
 
 }
+
+@media screen and (max-width: 435px) {
+  main h1 {
+            font-size: 150%;
+  }
+
+  main p {
+          font-size: 90%
+  }
+
+  #external-links h1 {
+                      font-size: 100%;
+  }
+
+  #external-links ul {
+                      font-size: 80%;
+  }
+}
+
+@media print {
+
+  body {
+        width: auto;
+  }
+
+  main {
+        display: block;
+        width: inherit;
+  }
+
+  #external-links {
+                    display: none;
+  }
+
+  figure {
+      page-break-inside: avoid;
+  }
+
+}
+
+
+/*@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+}*/
