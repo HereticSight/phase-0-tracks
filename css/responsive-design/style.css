@@ -9,6 +9,12 @@ cite {
   margin-top: 10px;
 }
 
+#external-links {
+                  width: 200px;
+                  display: inline-block;
+                  vertical-align: top;
+}
+
 #external-links ul {
   list-style-type: none;
   padding-left: 0px;
@@ -29,4 +35,14 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+
+body {
+      width: 960px;
+}
+
+main {
+      width: 756px;
+      display: inline-block;
+      vertical-align: top;
 }
