@@ -18,5 +18,28 @@ Using an Elevator:
       - If current floor number is not the desired floor number:
         - Remain in the elevator.
 
+Making Tea:
 
-
+- Boil Water.
+- Pick a type of tea:
+  - If green:
+    - Let water cool down to 80 degrees Celsius
+  - If black or Pu-erh:
+    - Let water cool down to 95 degrees Celsius
+  - If oolong or white:
+    - Let water cool down to 85 degrees Celsius
+- Place tea into bottom of teapot.
+- Once water is cooled to the correct temperature:
+  - Pour water into teapot.
+- Steep the tea for:
+  - If green:
+    - 2 minutes for a light flavor
+    - 3 minutes for a strong flavor
+  - If black or Pu-erh:
+    - 3 minutes for a light flavor
+    - 5 minutes for a strong flavor
+  - If oolong or white:
+    - 3 minutes for a light flavor
+    - 4 minutes for a strong flavor
+- Pour tea into a cup.
+- Drink tea.
