@@ -1,3 +1,56 @@
 body {
-  background-color: pink;
+  font-family: Helvetica;
+  max-width: 1280px;
+  margin: 0px auto;
+  background-color: #b396b4;
+}
+
+header {
+  background-color: #9e79a0;
+  padding: 5px;
+
+}
+
+header p {
+  width: 50%;
+  margin: 0px auto;
+}
+
+section {
+  background-color: #b396b4;
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+  height: 100%;
+
+}
+
+footer {
+ background-color: #9e79a0;
+ text-align: center;
+
+}
+
+h1 {
+  text-align: center;
+}
+
+a:link {
+  color: #16c253;
+}
+
+a:visited {
+  color: #08451d;
+}
+
+.column-1 {
+  margin: auto 2% auto 1%;
+  width: 47%;
+  padding: 5px;
+}
+
+.column-2 {
+  margin-right: auto 1% auto 2%;
+  width: 47%;
+  padding: 5px;
 }
