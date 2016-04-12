@@ -1,0 +1,22 @@
+Using an Elevator:
+- Face elevator
+- Look for the floor number of the current floor.
+  - If the target floor number is higher than the current floor number
+    - Press up.
+  - If the target floor number is lower than the current floor number:
+    - Press down.
+- Wait for the elevator to arrive.
+- Wait for the door to open.
+- Walk into the elevator
+  - Face the elevator panel
+  - Press the button for the desired floor number.
+  - Wait for door to close elevator to move.
+  - If the elevator stops:
+    - Look at the current floor number:
+      - If current floor number is the desired floor number:
+        - Exit elevator.
+      - If current floor number is not the desired floor number:
+        - Remain in the elevator.
+
+
+
