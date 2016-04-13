@@ -63,40 +63,66 @@ employees = gets.chomp.to_i
         health_ins = "No"
       end
 
-    #Even if the employee is an amazing liar otherwise, 
-    #anyone going by the name of “Drake Cula” or “Tu Fang” 
-    #is clearly a vampire, because come on. 
-    #In that case, you should print “Definitely a vampire.”
-
     if name == "Drake Cula" || name == "Tu Fang"
-      puts "“Definitely a vampire."
-
-    #If the employee got their age right, and is 
-    #willing to eat garlic bread or sign up for insurance, 
-    #the result is “Probably not a vampire.”
-
-    elsif (age == actual_age) && (gbread == "Yes" || health_ins == "Yes")
-      puts "Probably not a vampire."
-
-    #If the employee got their age wrong, and hates 
-    #garlic bread or waives insurance, the result is 
-    #“Probably a vampire.”
-
-    elsif age != actual_age && (gbread == "No" || health_ins == "No")
-      puts "Probably a vampire."
-
-    #If the employee got their age wrong, hates garlic bread, 
-    #and doesn’t want insurance, the result is 
-    #“Almost certainly a vampire.”
-
-    elsif age != actual_age && gbread == "No" && health_ins == "No"
-      puts "Almost certainly a vampire."
-
-    #Otherwise, print “Results inconclusive.”
-
+      puts "Definitely a vampire."
     else 
-      puts "Results inconclusive."
+      puts "Please let me know what your allergies are one at a time"
+        allergies = gets.chomp
+
+        if allergies == "sunshine"
+          puts "Probably a vampire."
+          vampire = "Yes"
+      
+        else
+          until allergies == "done"
+            if allergies == "sunshine"
+              puts "Probably a vampire."
+              allergies = "done"
+              vampire = "Yes"
+            else 
+              puts "What else?"
+              allergies = gets.chomp
+              vampire = "No"
+            end
+          end
+          
+          #Even if the employee is an amazing liar otherwise, 
+
+          #anyone going by the name of “Drake Cula” or “Tu Fang” 
+          #is clearly a vampire, because come on. 
+          #In that case, you should print “Definitely a vampire.”
+
+          if vampire == "No"
+            
+            #If the employee got their age right, and is 
+            #willing to eat garlic bread or sign up for insurance, 
+            #the result is “Probably not a vampire.”
+
+            if (age == actual_age) && (gbread == "Yes" || health_ins == "Yes")
+              puts "Probably not a vampire."
+
+            #If the employee got their age wrong, and hates 
+            #garlic bread or waives insurance, the result is 
+            #“Probably a vampire.”
+
+            elsif age != actual_age && (gbread == "No" || health_ins == "No")
+              puts "Probably a vampire."
+
+            #If the employee got their age wrong, hates garlic bread, 
+            #and doesn’t want insurance, the result is 
+            #“Almost certainly a vampire.”
+
+            elsif age != actual_age && gbread == "No" && health_ins == "No"
+              puts "Almost certainly a vampire."
+
+            #Otherwise, print “Results inconclusive.”
+
+            else 
+              puts "Results inconclusive."
+            end
+          end
+        end
     end
     employees -= 1
-  
   end
+
