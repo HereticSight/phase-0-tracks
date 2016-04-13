@@ -2,7 +2,7 @@
 
 puts "How many employees will be processed?"
 employees = gets.chomp.to_i
-
+  
   until employees == 0
 
     #What is your name?
@@ -41,15 +41,18 @@ employees = gets.chomp.to_i
       else
         actual_age = current_year - birth_year
       end
+    
     #Our company cafeteria serves garlic bread. 
     #Should we order some for you?
 
     puts "Our company cafeteria serves garlic bread. 
-    Should we order some for you?"
+    How many orders would you like?"
     gbread = gets.chomp
       
       if gbread == ""
-        gbread = "No"
+        gbread = "0".to_i
+      else
+        gbread = gbread.to_i
       end
 
     #Would you like to enroll in the company's 
@@ -68,13 +71,15 @@ employees = gets.chomp.to_i
     else 
       puts "Please let me know what your allergies are one at a time"
         allergies = gets.chomp
-
+        
         if allergies == "sunshine"
           puts "Probably a vampire."
           vampire = "Yes"
-      
         else
-          until allergies == "done"
+          vampire = "Unknown"
+          
+          until allergies == "done" || allergies == "none"
+            
             if allergies == "sunshine"
               puts "Probably a vampire."
               allergies = "done"
@@ -82,8 +87,9 @@ employees = gets.chomp.to_i
             else 
               puts "What else?"
               allergies = gets.chomp
-              vampire = "No"
+              vampire = "Unknown"
             end
+          
           end
           
           #Even if the employee is an amazing liar otherwise, 
@@ -92,37 +98,40 @@ employees = gets.chomp.to_i
           #is clearly a vampire, because come on. 
           #In that case, you should print “Definitely a vampire.”
 
-          if vampire == "No"
+          if vampire == "Unknown"
             
             #If the employee got their age right, and is 
             #willing to eat garlic bread or sign up for insurance, 
             #the result is “Probably not a vampire.”
 
-            if (age == actual_age) && (gbread == "Yes" || health_ins == "Yes")
+            if (age == actual_age) && (gbread >= 1 || health_ins == "Yes")
               puts "Probably not a vampire."
+
+            #If the employee got their age wrong, hates garlic bread, 
+            #and doesn't want insurance, the result is 
+            #“Almost certainly a vampire.”
+
+            elsif age != actual_age && gbread < 1 && health_ins == "No"
+              puts "Almost certainly a vampire."
 
             #If the employee got their age wrong, and hates 
             #garlic bread or waives insurance, the result is 
             #“Probably a vampire.”
 
-            elsif age != actual_age && (gbread == "No" || health_ins == "No")
+            elsif age != actual_age && (gbread < 1 || health_ins == "No")
               puts "Probably a vampire."
-
-            #If the employee got their age wrong, hates garlic bread, 
-            #and doesn’t want insurance, the result is 
-            #“Almost certainly a vampire.”
-
-            elsif age != actual_age && gbread == "No" && health_ins == "No"
-              puts "Almost certainly a vampire."
 
             #Otherwise, print “Results inconclusive.”
 
             else 
               puts "Results inconclusive."
+            
             end
-          end
-        end
+          
+          end        
+        end    
     end
     employees -= 1
   end
+
 puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
