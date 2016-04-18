@@ -22,7 +22,7 @@ puts "How many employees will be processed?"
     #Takes the name, splits it to separate words, capitalizes each word, 
     #and joins them back together with a space in between.
       else
-        name = name.split.each{|n_parts| n_parts.capitalize!}.join(' ')
+        name = name.split.map{|n_parts| n_parts.capitalize}.join(' ')
       end
     end
 
@@ -61,8 +61,8 @@ puts "How many employees will be processed?"
     How many orders would you like?"
     garlic_bread = gets.chomp.downcase
       
-      if garlic_bread == ("" || "n" || "no")
-        garlic_bread = 0
+      if garlic_bread == "yes" || garlic_bread == "y"
+        garlic_bread = 1
       else
         garlic_bread = garlic_bread.to_i
       end
@@ -82,56 +82,33 @@ puts "How many employees will be processed?"
                   "No"
                 end
     
-
-    #Even if the employee is an amazing liar otherwise, 
-    #anyone going by the name of “Drake Cula” or “Tu Fang” 
-    #is clearly a vampire, because come on. 
-    #In that case, you should print “Definitely a vampire.”
-    if name.downcase == "Drake Cula".downcase || name.downcase == "Tu Fang".downcase
-      puts "Name: #{name}"
-      puts "Age: #{age}"
-      puts "Birth Year: #{birth_year}"
-      puts "Insurance: #{insurance}"
-      puts "Conclusion: Definitely a vampire."
-    else 
-      #Asks employee about allergies
-      puts "Please let me know what your allergies are one at a time."
+    puts "Please let me know what your allergies are one at a time."
         allergies = gets.chomp
         #If allergic to sunshine, immediately note that employee is probably a vampire.
         
         if allergies == "sunshine"
-          puts "Name: #{name}"
-          puts "Age: #{age}"
-          puts "Birth Year: #{birth_year}"
-          puts "Insurance: #{insurance}"
-          puts "Conclusion: Probably a vampire."
-          continue = if allergies =="sunshine"
-                      false
-                    else
-                      true
-                    end
+          continue = false
+          result = "Conclusion: Probably a vampire"
+
         elsif allergies == "none" || allergies == "done"
           continue = true
+          result = "Conclusion: Results Inconclusive"
         else  
           #Until employee says done or none for allergies, repeat the loop
           puts "Let me know when you're done listing allergies."
-          until allergies == "done" || allergies == "none"
-            continue =  if allergies == "sunshine"
-                          false
-                        else
+          until allergies == "done"
+            continue =  if allergies != "sunshine"
                           true
                         end
             #If allergy to sunshine appears as a second allergy, note that employee is probably a vampire.
             if allergies == "sunshine"
-              puts "Name:#{name}"
-              puts "Age:#{age}"
-              puts "Birth Year: #{birth_year}"
-              puts "Insurance: #{insurance}"
-              puts "Conclusion: Probably a vampire."
+              result = "Conclusion: Probably a vampire"
+            continue = false
             #If allergy is anything else, ask for further allergies.
             else 
               puts "Anything else?"
               allergies = gets.chomp
+              result = "Conclusion: Results Inconclusive"
             end
           end
 
@@ -139,39 +116,46 @@ puts "How many employees will be processed?"
           
           if continue
 
-            puts "Name: #{name}"
-            puts "Age : #{age}"
-            puts "Birth Year: #{birth_year}"
-            puts "Insurance: #{insurance}"
-            
-
             #If the employee got their age right, and is 
             #willing to eat garlic bread or sign up for insurance, 
             #the result is “Probably not a vampire.”
             if (current_year == Time.now.year) && (garlic_bread >= 1 || health_ins == "y")
-              puts "Conclusion: Probably not a vampire."
-
+              result = "Conclusion: Probably not a vampire."
+            end
+            
             #If the employee got their age wrong, and hates 
             #garlic bread or waives insurance, the result is 
             #“Probably a vampire.”
-            elsif current_year != Time.now.year && (garlic_bread < 1 || health_ins == "n")
-              puts "Conclusion: Probably a vampire."
-            
+            if current_year != Time.now.year && (garlic_bread < 1 || health_ins == "n")
+              result = "Conclusion: Probably a vampire."
+            end
             #If the employee got their age wrong, hates garlic bread, 
             #and doesn't want insurance, the result is 
             #“Almost certainly a vampire.”
-            elsif current_year != Time.now.year && garlic_bread < 1 && health_ins == "n"
-              puts "Conclusion: Almost certainly a vampire."
-            
-            #Otherwise, print “Results inconclusive.”
-            else 
-              puts "Conclusion: Results inconclusive."
+            if current_year != Time.now.year && garlic_bread < 1 && health_ins == "n"
+              result = "Conclusion: Almost certainly a vampire."
+            end 
+
+            #Even if the employee is an amazing liar otherwise, 
+            #anyone going by the name of “Drake Cula” or “Tu Fang” is clearly a vampire, because come on. 
+            #In that case, you should print “Definitely a vampire.”
+            if name.downcase == "Drake Cula".downcase || name.downcase == "Tu Fang".downcase
+              result = "Conclusion: Definitely a vampire."
             end
-        end    
-    end
+            #Otherwise, print “Results inconclusive.”
+          end
+          
+            puts "Name: #{name}"
+            puts "Age : #{age}"
+            puts "Birth Year: #{birth_year}"
+            puts "Garlic Bread: #{garlic_bread} Orders"
+            puts "Insurance: #{insurance}"
+            puts result
+
     employees -= 1
   end
 # We live in an inclusive world now, so there let's let them know!
 puts "Actually, never mind!"
 puts "What do these questions have to do with anything?"
 puts "Let's all be friends."
+
