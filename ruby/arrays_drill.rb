@@ -1,3 +1,15 @@
+#Build method that takes 3 items as parameters and returns an array with the 3 items as objects.
+def build_array(a, b, c)
+  newarray = [a, b, c]
+  return newarray
+end
+
+#build a method that takes an array and an item as parameters. Adds the item to the array and returns the array with the newly added item.
+def add_to_array(arr, item)
+  arr << item
+  return arr
+end
+
 # initialize an array
 puts "Pandoras_Box =[]"
 Pandoras_Box = []
@@ -56,3 +68,10 @@ puts "Allthethings = Olympus + Pandoras_Box"
 Allthethings = Olympus + Pandoras_Box
 #Print the new array
 p Allthethings
+
+#prints out the method call for build_array
+p build_array("Carrots", "Peas", "Onions")
+#prints out the method call for add_to_array
+p add_to_array(["NYC","San Fran"],"Chicago")
+p add_to_array(["mouse","keyboard","monitor"], "webcam")
+p add_to_array(["hamsters", "fish", "cats"], "dogs")
