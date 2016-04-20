@@ -31,3 +31,18 @@ Pandoras_Box.delete("Expectation")
 # Prints the array after deleting the item
 p Pandoras_Box
 
+#Ask the array whether it includes a certain item. Print the result of this method call (labeled so it prints as more than just an isolated boolean value without any context.)
+
+#Ask user what item user would like to look for in the box.
+puts "What item do you want to look for in Pandora's Box?"
+# sets the users input equal to 'item' variable
+item = gets.chomp
+
+#If Pandoras_Box includes the item, lets the user know the item is included.
+if Pandoras_Box.include?(item)
+  puts "Pandora's Box includes #{item}!"
+#Otherwise it lets the user know the item is not included.
+else
+  puts "Pandora's Box does not include #{item}!"
+end
+
