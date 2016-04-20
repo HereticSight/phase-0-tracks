@@ -46,3 +46,13 @@ else
   puts "Pandora's Box does not include #{item}!"
 end
 
+#Initialize another array that already has a few items in it.
+Olympus = ["Zeus", "Hera", "Hermes"]
+#prints Olympus after initializing
+p Olympus
+
+#Add the two arrays together and store in a new variable
+puts "Allthethings = Olympus + Pandoras_Box"
+Allthethings = Olympus + Pandoras_Box
+#Print the new array
+p Allthethings
