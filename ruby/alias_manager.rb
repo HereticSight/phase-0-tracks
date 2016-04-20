@@ -1,3 +1,24 @@
+vowel = "aeiou"
+consonant = "abcdefghijklmnopqrstuvwxyz".delete("aeiou")
+
+def vowel_advance(letter)
+  vowel = "aeiou"
+  if letter == "u"
+    letter = "a"
+  else
+    letter = vowel[vowel.index(letter) + 1]
+  end
+end
+
+def consonant_advance(letter)
+consonant = "abcdefghijklmnopqrstuvwxyz".delete("aeiou")
+  if letter == "z"
+    letter = "b"
+  else
+    letter = consonant[consonant.index(letter) +1]
+  end 
+end
+
 #Split name by word
   #Swap first and last name in array
     #For each item in the array:
