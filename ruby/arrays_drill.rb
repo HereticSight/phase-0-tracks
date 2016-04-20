@@ -1,9 +1,20 @@
+# initialize an array
+puts "Pandoras_Box =[]"
 Pandoras_Box = []
 
-Pandoras_Box << "Expectation"
-Pandoras_Box << "Illness"
-Pandoras_Box << "Fear"
-Pandoras_Box << "Anxiety"
-Pandoras_Box << "Hope"
+# Print the array after initialization
+p Pandoras_Box
 
+# add 5 items to the array
+puts "Pandoras_Box << \"Expectation\" << \"Illness\" << \"Fear\" << \"Anxiety\"<< \"Hope\""
+Pandoras_Box << "Expectation" << "Illness" << "Fear" << "Anxiety"<< "Hope"
+
+# Print array after adding 5 items.
+p Pandoras_Box
+
+puts "Pandoras_Box.delete_at(2)"
+#delete the item at index 2
+Pandoras_Box.delete_at(2)
+
+# Print the array after deleting index 2
 p Pandoras_Box
