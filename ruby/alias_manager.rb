@@ -1,24 +1,3 @@
-vowel = "aeiou"
-consonant = "abcdefghijklmnopqrstuvwxyz".delete("aeiou")
-
-def vowel_advance(letter)
-  vowel = "aeiou"
-  if letter == "u"
-    letter = "a"
-  else
-    letter = vowel[vowel.index(letter) + 1]
-  end
-end
-
-def consonant_advance(letter)
-consonant = "abcdefghijklmnopqrstuvwxyz".delete("aeiou")
-  if letter == "z"
-    letter = "b"
-  else
-    letter = consonant[consonant.index(letter) +1]
-  end 
-end
-
 #Split name by word
   #Swap first and last name in array
     #For each item in the array:
@@ -32,63 +11,70 @@ end
               #Advance letter one consonant forward
           #Combine each array back into names
         #Combine each name back into a full name
-      
-full_name = "Jessica Rabbit"
-p full_name
-#Split name by word
-new_name = full_name.downcase.split(' ')
-p full_name
-p new_name
-#Swap first and last name
-new_name = new_name.reverse
-p new_name
 
-  #For each item in array:
-  index = 0
-  while index < new_name.count
-    #Split into letters
-    new_name[index] = new_name[index].split('')
-  index += 1
-  end
-p new_name
-  # Create a string with all of the vowels
+#create variables for vowel and consonant strings
+vowel = "aeiou"
+consonant = "abcdefghijklmnopqrstuvwxyz".delete("aeiou")
+#Initialize a hash for agent aliases
+agent_alias = {}
+
+#Define method to advance vowel forward one vowel
+def vowel_advance(letter)
   vowel = "aeiou"
-  # Create a string with all of the consonants by deleting vowel variable from the alphabet
-  consonant = "abcdefghijklmnopqrstuvwxyz".delete(vowel)
-  p consonant
-  windex = 0
-  while windex < new_name.count
-    aindex = 0
-      #Advance vowels forward 1 vowel
-      while aindex < new_name[windex].count
-      if vowel.index(new_name[windex][aindex]) != nil
-        if new_name[windex][aindex] == "u"
-          new_name[windex][aindex] = "a"
-        else
-          new_name[windex][aindex] = vowel[vowel.index(new_name[windex][aindex]) + 1]
-        end
-        p new_name
-        #Advance consonants forward 1 consonant
-      else
-        if new_name[windex][aindex] == "z"
-          new_name[windex][aindex] = "b"
-        else
-          new_name[windex][aindex] = consonant[consonant.index(new_name[windex][aindex]) + 1]
-        end
-      end
-    aindex +=1
+  if letter == "u"
+    letter = "a"
+  else
+    letter = vowel[vowel.index(letter) + 1]
+  end
+end
+
+#Define method to advance consonant forward one consonant
+def consonant_advance(letter)
+consonant = "abcdefghijklmnopqrstuvwxyz".delete("aeiou")
+  if letter == "z"
+    letter = "b"
+  else
+    letter = consonant[consonant.index(letter) +1]
+  end 
+end
+
+#Repeat until agent types "quit" or enters no information
+full_name = "Jessica Rabbit"
+until full_name.downcase == "quit" || full_name == ""
+  puts "What is the agent's name?"
+  full_name = gets.chomp
+
+    #Split name by word and reverse the order of the array
+    new_name = full_name.downcase.split(' ').reverse
+    #Split each name into a character array
+    new_name.map!{|name| name.chars}
+  
+    #for each name part do the following:
+    new_name.each do |n_part|
+         #for each letter in the array, do the following:
+         n_part.map! do |letter|
+             #If it matches a vowel:
+             if vowel.index(letter) != nil
+                 #Run the vowel advance method
+                 vowel_advance(letter)
+             #If it matches a consonant:
+             elsif consonant.index(letter) != nil
+              #Run the consonant advance method
+              consonant_advance(letter)
+             #To catch any symbols in names
+             else
+              letter = letter
+             end
+         end
     end
-  windex +=1
-  end
-  p new_name
-  #join each name array back together and capitalize
-  index = 0
-  while index < new_name.count
-    new_name[index] = new_name[index].join.capitalize
-  index += 1
-  end
-  #join full name back together
-  new_name = new_name.join(' ')
 
+  #Combine each letter array back into names, and combine each name into a full name
+  new_name = new_name.map!{|n_part| n_part.join('').capitalize}.join(' ')
+  
+  #Add agent name and alias as key=>value pair
+    agent_alias[full_name] = new_name
 
-puts "#{full_name}'s secret agent name is #{new_name}."
+end
+
+agent_alias.delete_if {|real_name,agent_name| real_name.downcase == "quit" || real_name == ""}
+agent_alias.each {|real_name,agent_name| puts "#{real_name} is also known as #{agent_name}."}
