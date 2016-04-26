@@ -71,10 +71,16 @@ until full_name.downcase == "quit" || full_name == ""
   #Combine each letter array back into names, and combine each name into a full name
   new_name = new_name.map!{|n_part| n_part.join('').capitalize}.join(' ')
   
+  #If user makes any input other than quit
+  if full_name.downcase != "quit" && full_name != ""
   #Add agent name and alias as key=>value pair
     agent_alias[full_name] = new_name
-
+  #Print the alias
+    puts new_name
+  else
+    puts "No other names were entered. The agents are as follows:"
+  end
 end
 
-agent_alias.delete_if {|real_name,agent_name| real_name.downcase == "quit" || real_name == ""}
-agent_alias.each {|real_name,agent_name| puts "#{real_name} is also known as #{agent_name}."}
+# agent_alias.delete_if {|real_name,agent_name| real_name.downcase == "quit" || real_name == ""}
+agent_alias.each {|real_name,agent_name| puts "#{real_name}, also known as #{agent_name}."}
