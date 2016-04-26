@@ -29,16 +29,6 @@ class Santa
     puts "age: #{@age}"
   end
 
-#Getter Methods
-  def age
-    @age
-  end
-
-  def ethnicity
-    @ethnicity
-  end
-
-
   def celebrate_birthday
     @age += 1
   end
