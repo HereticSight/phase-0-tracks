@@ -1,6 +1,8 @@
 
 
 class Santa
+  attr_reader :reindeer_ranking, :ethnicity
+  attr_accessor :gender, :age,
 
 #Santa methods
   def speak
@@ -36,25 +38,13 @@ class Santa
     @ethnicity
   end
 
-  def gender
-    @gender
-  end
 
-  def reindeer_ranking
-    @reindeer_ranking
-  end
-
-#Setter Methods
   def celebrate_birthday
     @age += 1
   end
 
   def get_mad_at(reindeer)
     @reindeer_ranking << @reindeer_ranking.slice!(@reindeer_ranking.index(reindeer))
-  end
-
-  def gender=(new_gender)
-    @gender = (new_gender)
   end
 
 end
@@ -74,7 +64,3 @@ santas[0].celebrate_birthday
 p santas[0].gender = "female"
 p santas[0].get_mad_at("Dasher")
 p santas[0].about
-
-
-
-p santas
