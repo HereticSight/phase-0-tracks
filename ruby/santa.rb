@@ -17,16 +17,13 @@ class Santa
     puts "Initializing Santa instance..."
     @gender = gender
     @ethnicity = ethnicity
-    @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
-    @age = 0
+    @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"].shuffle
+    @age = Random.new.rand(140)
   end
 
   def about
     puts "Name: Santa Claus"
-    puts "Gender: #{@gender}"
-    puts "Ethnicity: #{@ethnicity}"
     puts "Reindeer Ranking: #{@reindeer_ranking[0]}, #{@reindeer_ranking[1]}, #{@reindeer_ranking[2]}, #{@reindeer_ranking[3]}, #{@reindeer_ranking[4]}, #{@reindeer_ranking[5]}, #{@reindeer_ranking[6]}, #{@reindeer_ranking[7]}, #{@reindeer_ranking[8]}"
-    puts "age: #{@age}"
   end
 
   def celebrate_birthday
@@ -39,18 +36,22 @@ class Santa
 
 end
 
-santas = []
-santas << Santa.new("agender", "black")
-santas << Santa.new("female", "Latino")
-santas << Santa.new("bigender", "white")
-santas << Santa.new("male", "Japanese")
-santas << Santa.new("female", "prefer not to say")
-santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
-santas << Santa.new("N/A", "N/A")
+example_genders = ["agender", "female", "bigender", "male", "gender fluid","gender solid" , "gender gaseous" "N/A",]
+example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "Japanese", "American", "Korean", "Martian", "Jupiterite", "N/A"]
 
-p santas[0].age
-p santas[0].ethnicity
-santas[0].celebrate_birthday
-p santas[0].gender = "female"
-p santas[0].get_mad_at("Dasher")
-p santas[0].about
+Random.new.rand(10000).times do
+  santa = Santa.new(example_genders.sample, example_ethnicities.sample)
+  santa.about
+  puts "Gender: #{santa.gender}"
+  puts "Ethnicity: #{santa.ethnicity}"
+  puts "Age: #{santa.age}"
+end
+
+#
+#
+# p santas[0].age
+# p santas[0].ethnicity
+# santas[0].celebrate_birthday
+# p santas[0].gender = "female"
+# p santas[0].get_mad_at("Dasher")
+# p santas[0].about
