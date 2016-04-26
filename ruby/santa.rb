@@ -13,5 +13,18 @@ class Santa
 
   def initialize(gender, ethnicity)
     puts "Initializing Santa instance..."
+    @gender = gender
+    @ethnicity = ethnicity
+    @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
+    @age = 0
   end
+
+  def about
+    puts "Name: Santa Claus"
+    puts "Gender: #{@gender}"
+    puts "Ethnicity: #{@ethnicity}"
+    puts "Reindeer Ranking: #{@reindeer_ranking[0]}, #{@reindeer_ranking[1]}, #{@reindeer_ranking[2]}, #{@reindeer_ranking[3]}, #{@reindeer_ranking[4]}, #{@reindeer_ranking[5]}, #{@reindeer_ranking[6]}, #{@reindeer_ranking[7]}, #{@reindeer_ranking[8]}"
+    puts "age: #{@age}"
+  end
+
 end
