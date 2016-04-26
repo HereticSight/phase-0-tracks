@@ -27,6 +27,36 @@ class Santa
     puts "age: #{@age}"
   end
 
+#Getter Methods
+  def age
+    @age
+  end
+
+  def ethnicity
+    @ethnicity
+  end
+
+  def gender
+    @gender
+  end
+
+  def reindeer_ranking
+    @reindeer_ranking
+  end
+
+#Setter Methods
+  def celebrate_birthday
+    @age += 1
+  end
+
+  def get_mad_at(reindeer)
+    @reindeer_ranking << @reindeer_ranking.slice!(@reindeer_ranking.index(reindeer))
+  end
+
+  def gender=(new_gender)
+    @gender = (new_gender)
+  end
+
 end
 
 santas = []
@@ -37,5 +67,14 @@ santas << Santa.new("male", "Japanese")
 santas << Santa.new("female", "prefer not to say")
 santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
 santas << Santa.new("N/A", "N/A")
+
+p santas[0].age
+p santas[0].ethnicity
+santas[0].celebrate_birthday
+p santas[0].gender = "female"
+p santas[0].get_mad_at("Dasher")
+p santas[0].about
+
+
 
 p santas
