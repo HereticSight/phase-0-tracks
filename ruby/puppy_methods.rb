@@ -34,3 +34,27 @@ spot.roll_over
 p spot.dog_years(2)
 spot.play_dead
 
+class Cat
+  
+  def initialize
+    puts "A feral feline has appeared!"
+  end
+  
+  def jump(int)
+    int.times { puts "*jumps*"}
+  end
+  
+  def talk
+    puts "Meow"
+  end
+  
+end
+
+cats = []
+
+50.times do
+  cats << Cat.new
+end
+
+cats.each { |cat| cat.talk}
+cats.each { |cat| cat.jump(2)}
