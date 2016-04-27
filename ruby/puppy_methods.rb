@@ -20,6 +20,10 @@ class Puppy
   def play_dead
     puts "*playing dead*"
   end
+  
+  def initialize
+    puts "Initializing new puppy instance..."
+  end
 end
 
 
@@ -29,3 +33,4 @@ spot.speak(3)
 spot.roll_over
 p spot.dog_years(2)
 spot.play_dead
+
