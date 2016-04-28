@@ -25,11 +25,11 @@ class Santa
     puts "Name: Santa Claus"
     puts "Reindeer Ranking: #{@reindeer_ranking[0]}, #{@reindeer_ranking[1]}, #{@reindeer_ranking[2]}, #{@reindeer_ranking[3]}, #{@reindeer_ranking[4]}, #{@reindeer_ranking[5]}, #{@reindeer_ranking[6]}, #{@reindeer_ranking[7]}, #{@reindeer_ranking[8]}"
   end
-
+# Add 1 to the age of the Santa
   def celebrate_birthday
     @age += 1
   end
-
+# Find the reindeer, make it get out of the line, and walk to the back.
   def get_mad_at(reindeer)
     @reindeer_ranking << @reindeer_ranking.slice!(@reindeer_ranking.index(reindeer))
   end
