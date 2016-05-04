@@ -32,13 +32,13 @@ function Car(Engine, Doors, isHatchback) {
   console.log("INITIALIZING CAR COMPLETE");
   
 }
-
+// create a new car
 var car = new Car("V6", 2, false);
 
 console.log("The car's engine is a " + car.engine);
 console.log("The car has " + car.doors + " doors.");
 car.Hatchback();
-
+car.speedUp();
 
 console.log("-------");
 
@@ -47,4 +47,4 @@ var anothercar = new Car("V8", 4, true);
 console.log("The car's engine is a " + anothercar.engine);
 console.log("The car has " + anothercar.doors + " doors.");
 anothercar.Hatchback();
-
+anothercar.speedUp();
