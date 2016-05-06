@@ -12,4 +12,8 @@ function reverse(word) {
   return newWord
 }
 
-console.log(reverse('hello'));
+var reversedWord = reverse('hello');
+
+if (1 != 2) {
+console.log(reversedWord); 
+};
