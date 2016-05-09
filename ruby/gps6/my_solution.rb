@@ -91,3 +91,15 @@ end
 
 #=======================================================================
 # Reflection Section
+# What are the differences between the two different hash syntaxes shown in the state_data file?
+# The two different syntaxes for hash are "key => value" and "key: value". The first way allows you to add a value to a string, or a symbol. The second way creates a symbol with the key and assigns the value.
+# What does require_relative do? How is it different from require?
+# require_relative allows you to load a file that is located in a relative path to the current file.
+#require_relative makes the data in the specified file available in the file that require_relative is called.
+#require_relative differs from require in that it has a local scope, while require has more of a global scope and lets you access remote ruby libraries.
+# What are some ways to iterate through a hash?
+# Iterating through a hash can be done using the .each and .map methods, similar to iterating through an array. The only difference is the requirement to use key and value within the block.
+# When refactoring virus_effects, what stood out to you about the variables, if anything?
+# The variables were redundant in virus_effects since the methods already called for the attributes. There was no need to pass any parameters.
+# What concept did you most solidify in this challenge?
+# I solidified refactoring within this challenge.
