@@ -27,24 +27,19 @@ class VirusPredictor
     speed_of_spread
   end
 
-  # private
+  private
 
   # Using population_density attribute determines the number of deaths by multiplying the population by a specified float, and rounding down to the nearest integer.
   # Prints a statement of how many deaths will occur within the specified state.
   def predicted_deaths
-    # predicted deaths is solely based on population density
-    if population_density >= 200
-      number_of_deaths = (population * 0.4).floor
-    elsif population_density >= 150
-      number_of_deaths = (population * 0.3).floor
-    elsif population_density >= 100
-      number_of_deaths = (population * 0.2).floor
-    elsif population_density >= 50
-      number_of_deaths = (population * 0.1).floor
-    else
-      number_of_deaths = (population * 0.05).floor
-    end
 
+    number_of_deaths = (population * 0.05).floor
+    
+    4.times do |i|
+      if population_density >= 50*(i+1)
+        number_of_deaths = (population * 0.1*(i+1)).floor
+      end
+    end
     print "#{state} will lose #{number_of_deaths} people in this outbreak"
 
   end
@@ -54,18 +49,6 @@ class VirusPredictor
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
     speed = 2.5
-
-    # if population_density >= 200
-    #   speed += 0.5
-    # elsif population_density >= 150
-    #   speed += 1
-    # elsif population_density >= 100
-    #   speed += 1.5
-    # elsif population_density >= 50
-    #   speed += 2
-    # else
-    #   speed += 2.5
-    # end
 
     4.times do |i|
       if population_density >= 50*(i+1)
@@ -85,27 +68,26 @@ end
  # initialize VirusPredictor for each state
 
 
-alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population])
-alabama.virus_effects
+# alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population])
+# alabama.virus_effects
 
 
-jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population])
-jersey.virus_effects
+# jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population])
+# jersey.virus_effects
 
 
-california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population])
-california.virus_effects
+# california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population])
+# california.virus_effects
 
 
-alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
-alaska.virus_effects
+# alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
+# alaska.virus_effects
 
 
-# STATE_DATA.each do |state, data|
-#   predict = VirusPredictor.new(state,data[:population_density], data[:population])
-#   predict.virus_effects
-# end
-
+STATE_DATA.each do |state, data|
+  predict = VirusPredictor.new(state,data[:population_density], data[:population])
+  predict.virus_effects
+end
 
 #=======================================================================
 # Reflection Section
