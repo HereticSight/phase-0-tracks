@@ -30,6 +30,22 @@ function objectcompare(object1, object2) {
   return matching;
 }
 
+//Generate an array of a given length with strings of random length.
+function wordarray(length) {
+  //Create a random word of random length
+    words = [];
+    alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  for (var i = 1; i <= length; i++) {
+    word = '';
+    for (var j = (Math.floor(Math.random() * 10) + 1); j > 0; j--) {
+      word += alphabet[Math.floor(Math.random() * (alphabet.length - 1)) + 1];
+    } 
+  words.push(word);
+  }
+  return words;
+}
+
+console.log(longestword(["long phrase","longest phrase","longer phrase"]));
 
 var steven = {name: "Steven", age: 54};
 var tamir = {name: "Tamir", age: 54};
@@ -38,5 +54,9 @@ var animals = {cat: "Bob", dog: "John"}
 console.log(objectcompare(steven, tamir));
 console.log(objectcompare(steven, animals));
 
-console.log(longestword(["long phrase","longest phrase","longer phrase"]));
+for (var times = 10; times > 0; times--) {
 
+  wordArray = wordarray(Math.floor(Math.random() * 10) + 1);
+  console.log(wordArray);
+  console.log(longestword(wordArray));
+}
