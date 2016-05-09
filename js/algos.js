@@ -35,11 +35,15 @@ function wordarray(length) {
   //Create a random word of random length
     words = [];
     alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  //loop a number of times equal to the length
   for (var i = 1; i <= length; i++) {
     word = '';
+    //loop a number of times equal to a random number between 1 and 10
     for (var j = (Math.floor(Math.random() * 10) + 1); j > 0; j--) {
+      //pick a random letter from the alphabet and add it to the word
       word += alphabet[Math.floor(Math.random() * (alphabet.length - 1)) + 1];
     } 
+  //add the word to the array
   words.push(word);
   }
   return words;
