@@ -1,0 +1,215 @@
+1. Display the information in one table (either table is fine).
+
+sqlite> SELECT * FROM keyboards;
+1|Shine 5|1|2|false|165
+2|One TK RGB|1|2|true|125
+3|EnduraPro|5|4|false|105
+4|Ultra Classic|5|4|false|84
+5|G105|3|1|false|60
+6|G710|3|2|false|130
+7|Raptor K40|4|1|false|80
+8|Vengeance K65 Compact|4|2|true|90
+9|Model S Professional|2|2|false|139
+10|4C Professional|2|2|true|113
+11|TYPE HEAVEN|6|3|false|136
+12|REALFORCE 87U|6|3|true|199
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> UPDATE keyboards SET avg_price=99 WHERE name="4C Professional";
+sqlite> SELECT * FROM keyboards
+   ...> ;
+1|Shine 5|1|2|false|165
+2|One TK RGB|1|2|true|125
+3|EnduraPro|5|4|false|105
+4|Ultra Classic|5|4|false|84
+5|G105|3|1|false|60
+6|G710|3|2|false|130
+7|Raptor K40|4|1|false|80
+8|Vengeance K65 Compact|4|2|true|90
+9|Model S Professional|2|2|false|139
+10|4C Professional|2|2|true|99
+11|TYPE HEAVEN|6|3|false|136
+12|REALFORCE 87U|6|3|true|199
+
+3. Display the information in both tables using one query.
+
+sqlite> SELECT * FROM keyboards, brands, type WHERE keyboards.brand_id = brands.id AND keyboards.type_id = type.id;
+1|Shine 5|1|2|false|165|1|Ducky|Taiwan|2|Cherry MX
+2|One TK RGB|1|2|true|125|1|Ducky|Taiwan|2|Cherry MX
+3|EnduraPro|5|4|false|105|5|Unicomp|United States|4|Buckling Spring
+4|Ultra Classic|5|4|false|84|5|Unicomp|United States|4|Buckling Spring
+5|G105|3|1|false|60|3|Logitech|Switzerland|1|Membrane
+6|G710|3|2|false|130|3|Logitech|Switzerland|2|Cherry MX
+7|Raptor K40|4|1|false|80|4|Corsair|United States|1|Membrane
+8|Vengeance K65 Compact|4|2|true|90|4|Corsair|United States|2|Cherry MX
+9|Model S Professional|2|2|false|139|2|Das Keyboard|United States|2|Cherry MX
+10|4C Professional|2|2|true|99|2|Das Keyboard|United States|2|Cherry MX
+11|TYPE HEAVEN|6|3|false|136|6|Topre|Japan|3|Topre
+12|REALFORCE 87U|6|3|true|199|6|Topre|Japan|3|Topre
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+sqlite> SELECT keyboards.name, brands.brand_name, type.key_type, keyboards.tenkeyless, keyboards.avg_price FROM keyboards JOIN brands, type ON keyboards.brand_id = brands.id AND keyboards.type_id = type.id;
+Shine 5|Ducky|Cherry MX|false|165
+One TK RGB|Ducky|Cherry MX|true|125
+EnduraPro|Unicomp|Buckling Spring|false|105
+Ultra Classic|Unicomp|Buckling Spring|false|84
+G105|Logitech|Membrane|false|60
+G710|Logitech|Cherry MX|false|130
+Raptor K40|Corsair|Membrane|false|80
+Vengeance K65 Compact|Corsair|Cherry MX|true|90
+Model S Professional|Das Keyboard|Cherry MX|false|139
+4C Professional|Das Keyboard|Cherry MX|true|99
+TYPE HEAVEN|Topre|Topre|false|136
+REALFORCE 87U|Topre|Topre|true|199
+
+5. Delete an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> DELETE FROM keyboards WHERE type_id=1;
+sqlite> SELECT * FROM keyboards
+   ...> ;
+1|Shine 5|1|2|false|165
+2|One TK RGB|1|2|true|125
+3|EnduraPro|5|4|false|105
+4|Ultra Classic|5|4|false|84
+6|G710|3|2|false|130
+8|Vengeance K65 Compact|4|2|true|90
+9|Model S Professional|2|2|false|139
+10|4C Professional|2|2|true|99
+11|TYPE HEAVEN|6|3|false|136
+12|REALFORCE 87U|6|3|true|199
+
+=========================
+
+INNER JOIN - produces a result set where there is a match in both tables.
+
+sqlite> SELECT name, brand_name, company_loc, avg_price
+   ...> FROM keyboards
+   ...> INNER JOIN brands
+   ...> ON brand_id = brands.id;
+Shine 5|Ducky|Taiwan|165
+One TK RGB|Ducky|Taiwan|125
+EnduraPro|Unicomp|United States|105
+Ultra Classic|Unicomp|United States|84
+G710|Logitech|Switzerland|130
+Vengeance K65 Compact|Corsair|United States|90
+Model S Professional|Das Keyboard|United States|139
+4C Professional|Das Keyboard|United States|99
+TYPE HEAVEN|Topre|Japan|136
+REALFORCE 87U|Topre|Japan|199
+
+LEFT OUTER JOIN - shows all of the rows from the left table, but only shows results from the right side table if there is a match. If there are results from the left table, but not the right, null will be displayed where there are no values on the right table.
+
+(using keyboards as the left)
+sqlite> SELECT name, brand_name, company_loc, avg_price
+   ...> FROM keyboards
+   ...> LEFT OUTER JOIN brands
+   ...> ON brand_id = brands.id;
+Shine 5|Ducky|Taiwan|165
+One TK RGB|Ducky|Taiwan|125
+EnduraPro|Unicomp|United States|105
+Ultra Classic|Unicomp|United States|84
+G710|Logitech|Switzerland|130
+Vengeance K65 Compact|Corsair|United States|90
+Model S Professional|Das Keyboard|United States|139
+4C Professional|Das Keyboard|United States|99
+TYPE HEAVEN|Topre|Japan|136
+REALFORCE 87U|Topre|Japan|199
+
+(using type as the left)
+sqlite> SELECT key_type, keyboards.name, keyboards.avg_price
+   ...> FROM type
+   ...> LEFT OUTER JOIN keyboards
+   ...> ON type.id = keyboards.type_id;
+Membrane||
+Cherry MX|4C Professional|99
+Cherry MX|G710|130
+Cherry MX|Model S Professional|139
+Cherry MX|One TK RGB|125
+Cherry MX|Shine 5|165
+Cherry MX|Vengeance K65 Compact|90
+Topre|REALFORCE 87U|199
+Topre|TYPE HEAVEN|136
+Buckling Spring|EnduraPro|105
+Buckling Spring|Ultra Classic|84
+
+
+RIGHT OUTER JOIN - Same as Left outer join, but reversed. Shows all right table rows, and null for left if none exists. (Not supported by my SQLite version?)
+
+sqlite> SELECT name, key_type, avg_price
+   ...> FROM keyboards
+   ...> RIGHT OUTER JOIN type
+   ...> ON type_id = type.id;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+
+FULL OUTER JOIN - returns a result set with all of the rows of both tables whether or not there are matches. Any parts with no information will be null, similar to right and left outer joins. (Not supported by my SQLite version?)
+
+sqlite> SELECT name, key_type, avg_price
+   ...> FROM keyboards
+   ...> FULL OUTER JOIN type
+   ...> ON type_id = type.id;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+
+CROSS JOIN - returns a table that is equal to the number of rows on the left table times the number of rows on the right table. The table is a combination of each of the rows from the first and second tables.
+
+sqlite> SELECT name, key_type, avg_price
+   ...> FROM keyboards
+   ...> CROSS JOIN type;
+Shine 5|Membrane|165
+Shine 5|Cherry MX|165
+Shine 5|Topre|165
+Shine 5|Buckling Spring|165
+One TK RGB|Membrane|125
+One TK RGB|Cherry MX|125
+One TK RGB|Topre|125
+One TK RGB|Buckling Spring|125
+EnduraPro|Membrane|105
+EnduraPro|Cherry MX|105
+EnduraPro|Topre|105
+EnduraPro|Buckling Spring|105
+Ultra Classic|Membrane|84
+Ultra Classic|Cherry MX|84
+Ultra Classic|Topre|84
+Ultra Classic|Buckling Spring|84
+G710|Membrane|130
+G710|Cherry MX|130
+G710|Topre|130
+G710|Buckling Spring|130
+Vengeance K65 Compact|Membrane|90
+Vengeance K65 Compact|Cherry MX|90
+Vengeance K65 Compact|Topre|90
+Vengeance K65 Compact|Buckling Spring|90
+Model S Professional|Membrane|139
+Model S Professional|Cherry MX|139
+Model S Professional|Topre|139
+Model S Professional|Buckling Spring|139
+4C Professional|Membrane|99
+4C Professional|Cherry MX|99
+4C Professional|Topre|99
+4C Professional|Buckling Spring|99
+TYPE HEAVEN|Membrane|136
+TYPE HEAVEN|Cherry MX|136
+TYPE HEAVEN|Topre|136
+TYPE HEAVEN|Buckling Spring|136
+REALFORCE 87U|Membrane|199
+REALFORCE 87U|Cherry MX|199
+REALFORCE 87U|Topre|199
+REALFORCE 87U|Buckling Spring|199
+
+Self Join - joins a table with itself.
+
+sqlite> SELECT K1.id, K1.name, K1.avg_price, K2.id, K2.name, K2.avg_price
+   ...> FROM keyboards K1
+   ...> INNER JOIN keyboards K2
+   ...> ON K1.id = K2.id;
+1|Shine 5|165|1|Shine 5|165
+2|One TK RGB|125|2|One TK RGB|125
+3|EnduraPro|105|3|EnduraPro|105
+4|Ultra Classic|84|4|Ultra Classic|84
+6|G710|130|6|G710|130
+8|Vengeance K65 Compact|90|8|Vengeance K65 Compact|90
+9|Model S Professional|139|9|Model S Professional|139
+10|4C Professional|99|10|4C Professional|99
+11|TYPE HEAVEN|136|11|TYPE HEAVEN|136
+12|REALFORCE 87U|199|12|REALFORCE 87U|199
