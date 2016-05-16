@@ -22,7 +22,7 @@ SQL
 # create a kittens table (if it's not there already)
 db.execute(create_table_cmd)
 
-# add a test kitten
+# # add a test kitten
 # db.execute("INSERT INTO kittens (name, age) VALUES ('Bob', 10)")
 
 # add LOOOOTS of kittens!
@@ -36,7 +36,7 @@ end
   create_kitten(db, Faker::Name.name, 0)
 end
 
-# explore ORM by retrieving data
+# # explore ORM by retrieving data
 # kittens = db.execute("SELECT * FROM kittens")
 # kittens.each do |kitten|
 #  puts "#{kitten['name']} is #{kitten['age']}"
