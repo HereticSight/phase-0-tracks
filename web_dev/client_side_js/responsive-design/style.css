@@ -1,0 +1,100 @@
+blockquote {
+  border-left: 5px solid blue;
+  padding: 15px;
+  margin-left: 0px;
+}
+
+cite {
+  display: block;
+  margin-top: 10px;
+}
+
+#external-links {
+                  width: 18%;
+                  display: inline-block;
+                  vertical-align: top;
+                  padding-right: 5px;
+
+}
+
+#external-links ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+/* you're welcome to edit the
+image, figure, and figcaption CSS if you'd like,
+but it's optional! */
+img {
+  width: 100%;
+}
+
+figure {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+figcaption {
+  font-style: italic;
+  text-align: right;
+}
+
+body {
+      margin: auto;
+      max-width: 960px;
+      min-width: 300px;
+}
+
+main {
+      max-width: 77%;
+      display: inline-block;
+      vertical-align: top;
+      padding-left: 5px;
+
+}
+
+@media screen and (max-width: 435px) {
+  main h1 {
+            font-size: 150%;
+  }
+
+  main p {
+          font-size: 90%
+  }
+
+  #external-links h1 {
+                      font-size: 100%;
+  }
+
+  #external-links ul {
+                      font-size: 80%;
+  }
+}
+
+@media print {
+
+  body {
+        width: auto;
+  }
+
+  main {
+        display: block;
+        width: inherit;
+  }
+
+  #external-links {
+                    display: none;
+  }
+
+  figure {
+      page-break-inside: avoid;
+  }
+
+}
+
+
+/*@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+}*/
