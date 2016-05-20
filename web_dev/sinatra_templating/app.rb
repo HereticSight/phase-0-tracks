@@ -1,5 +1,6 @@
 # require gems
 require 'sinatra'
+require 'sinatra/reloader'
 require 'sqlite3'
 
 set :public_folder, File.dirname(__FILE__) + '/static'
@@ -25,3 +26,18 @@ post '/students' do
 end
 
 # add static resources
+
+# create a route to the campus request form
+get '/campus/new' do
+  erb :campus
+end
+
+# add the requested database to the campuses table
+post '/campus' do
+  db.execute("INSERT INTO campuses (loc, current) VALUES (?, \"false\")", [params[:campus]])
+  redirect '/thank-you'
+end
+
+get '/thank-you' do
+  erb :thank_you
+end
