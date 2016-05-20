@@ -1,5 +1,6 @@
 # require gems
 require 'sinatra'
+require 'sinatra/reloader'
 require 'sqlite3'
 
 db = SQLite3::Database.new("students.db")
@@ -44,3 +45,38 @@ get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
 end
+
+# write a GET route that retrieves
+# an address
+
+get '/contact' do
+  "123 Fake St., Unreal, TX 54321"
+end
+
+# write a GET route that takes a person's name
+# as a query parameter and say "Good job, [person's name]!"
+# If the query parameter is not present, the rout simply says "Good job!"
+
+get '/great_job'  do
+  name = params[:name]
+  if name
+    "Good job, #{name}!"
+  else
+    "Good job!"
+  end
+end
+
+# A route that uses route parameters to add two numbers and respond with the result. 
+# The data types are tricky here -- when will the data need to be (or arrive as) a string?
+# The data is input as strings, but will need to be converted to integers in order for the
+# operation to perform. Otherwise it will concatenate the two strings together. The .to_i
+# method can be used on each parameter to turn it into an integer and added. If interpolated,
+# there would be no need to even change the answer back to a string.
+
+get '/:number1/plus/:number2' do
+  # "answer = "params[:number1].to_i + params[:number2].to_i
+  # "#{params[:number1]} + #{params[:number2]} = #{answer}"
+  "#{params[:number1]} + #{params[:number2]} = #{params[:number1].to_i + params[:number2].to_i}"
+end
+
+# 
