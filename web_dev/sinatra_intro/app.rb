@@ -10,7 +10,28 @@ db.results_as_hash = true
 # add a query parameter
 # GET /
 get '/' do
-  "#{params[:name]} is #{params[:age]} years old."
+  name = params[:name]
+  if name
+    students = db.execute("SELECT * FROM students")
+    response = ""
+    students.each do |student|
+      if student['name'].include?(name)
+      response << "ID: #{student['id']}<br>"
+      response << "Name: #{student['name']}<br>"
+      response << "Age: #{student['age']}<br>"
+      response << "Campus: #{student['campus']}<br><br>"
+      end
+    end
+    
+    if response != ""
+      response
+    else
+      "There are no students who go by #{name}."
+    end
+  
+  else
+    "Welcome to the Students DB!"
+  end
 end
 
 # write a GET route with
